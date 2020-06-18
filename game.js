@@ -18,12 +18,12 @@ var config = {
 };
 
 var game = new Phaser.Game(config);
-
+var cuchilloStateText;
 var play;
-
+var cuchillo
 var score;
 var gameOver;
-
+var reloj;
 var player;
 var stars;
 var bombs;

@@ -9,12 +9,12 @@ class Scene2 extends Phaser.Scene {
       
       //solo esta se usa en scene1
       this.load.image('logo', 'assets/logo.png');
-
+      this.load.image('reloj', 'assets/reloj.png')
       this.load.image('ground', 'assets/platform.png');
       this.load.image('star', 'assets/star.png');
       this.load.image('bomb', 'assets/bomb.png');
       this.load.spritesheet('dude', 'assets/dude.png', { frameWidth: 32, frameHeight: 48 });      
-      
+      this.load.image('cuchillo', 'assets/cuchillo.png')
       //this.load.image('mushroom', 'assets/mushroom.png');
       this.load.image('tomato', 'assets/tomato.png'); 
       this.load.image('carrot', 'assets/carrot.png');      
@@ -118,10 +118,14 @@ class Scene2 extends Phaser.Scene {
 
         this.jumps = 0;
 
+        var reloj = this.add.image(400, 100, 'reloj').setScale(0.40).setInteractive();
+
+
 
         // Interactive dude
-        player.setInteractive();
-        this.input.setDraggable(player);
+        var cuchillo = this.add.image(50, 50, 'cuchillo').setScale(0.10);
+        cuchillo.setInteractive();
+        this.input.setDraggable(cuchillo);
     
         this.input.on('dragstart', function (pointer, gameObject) {
             gameObject.setTint(0x0000ff);            
@@ -138,15 +142,51 @@ class Scene2 extends Phaser.Scene {
         });
 
 
-        dudeStateText = this.add.text(16, 550, '', { fontSize: '32px', fill: '#000' });
-        player.on('pointerover', function () {
-            dudeStateText.setText('Puntero en Player'); 
+        cuchilloStateText = this.add.text(16, 550, '', { fontSize: '32px', fill: '#000' });
+        cuchillo.on('pointerover', function () {
+            cuchilloStateText.setText('Puntero en el cuchillo'); 
         });
-        player.on('pointerout', function () {            
-            dudeStateText.setText('Puntero fuera de Player');
+        cuchillo.on('pointerout', function () {            
+            cuchilloStateText.setText('Puntero fuera del cuchillo');
         });
 
         
+        reloj.input.dropZone = true
+
+        this.input.on('dragenter', function (pointer, gameObject, dropZone) {
+
+            reloj.setTint(0x00ff00);
+    
+        });
+        
+        this.input.on('dragleave', function (pointer, gameObject, dropZone) {
+
+            reloj.clearTint();
+    
+        });
+        
+        this.input.on('drop', function (pointer, gameObject, dropZone) {
+
+            gameObject.x = dropZone.x;
+            gameObject.y = dropZone.y;
+            gameObject.setScale(0.2);
+            
+            gameObject.input.enabled = false;
+    
+            reloj.clearTint();
+    
+        });
+
+        this.input.on('dragend', function (pointer, gameObject, dropped) {
+
+            if (!dropped)
+            {
+                gameObject.x = gameObject.input.dragStartX;
+                gameObject.y = gameObject.input.dragStartY;
+            }
+    
+        });
+
     }
 
 
