@@ -14,7 +14,7 @@ var config = {
         }
     },
     //la importante es la primera, que es la que arranca
-    scene: [Scene1,Scene2]
+    scene: [Scene1,Scene2,Scene3]
 };
 
 var game = new Phaser.Game(config);
