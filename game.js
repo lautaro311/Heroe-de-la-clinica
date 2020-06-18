@@ -1,20 +1,41 @@
 var config = {
     type: Phaser.AUTO,
-    width: 800 ,
-    heigth: 600 ,
-    physics: {
-        default: 'arcade' ,
-        arcade: {
-            gravity: { y: 300} ,
-            debug: false 
-        } 
-    } ,
-    scene: [Scene1,]
-} ;
+    scale:{
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: 1102,
+        height: 620,
+    },
 
-var Doctor;
-var piso;
-var apretar;
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false
+        }
+    },
+    //la importante es la primera, que es la que arranca
+    scene: [Scene1,Scene2]
+};
 
 var game = new Phaser.Game(config);
 
+var play;
+
+var score;
+var gameOver;
+
+var player;
+var stars;
+var bombs;
+var platforms;
+var cursors;
+var scoreText;
+var dudeStateText;
+
+var timedEvent;
+var initialTime;
+var timeText;
+
+var patron;
+
+var hongo;
