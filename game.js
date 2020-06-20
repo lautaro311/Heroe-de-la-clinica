@@ -1,20 +1,20 @@
 var config = {
-    type: Phaser.AUTO,
-    scale:{
-        autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 1102,
-        height: 620,
-    },
+  type: Phaser.AUTO,
+  scale: {
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 1102,
+    height: 620,
+  },
 
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { y: 300 },
+      debug: false,
     },
-    //la importante es la primera, que es la que arranca
-    scene: [Scene1,Scene2,Scene3]
+  },
+  //la importante es la primera, que es la que arranca
+  scene: [Scene1, Scene2, Scene3],
 };
 
 var game = new Phaser.Game(config);
