@@ -1,241 +1,133 @@
-var adjectives = [
-  "adamant",
-  "adroit",
-  "amatory",
-  "animistic",
-  "antic",
-  "arcadian",
-  "baleful",
-  "bellicose",
-  "bilious",
-  "boorish",
-  "calamitous",
-  "caustic",
-  "cerulean",
-  "comely",
-  "concomitant",
-  "contumacious",
-  "corpulent",
-  "crapulous",
-  "defamatory",
-  "didactic",
-  "dilatory",
-  "dowdy",
-  "efficacious",
-  "effulgent",
-  "egregious",
-  "endemic",
-  "equanimous",
-  "execrable",
-  "fastidious",
-  "feckless",
-  "fecund",
-  "friable",
-  "fulsome",
-  "garrulous",
-  "guileless",
-  "gustatory",
-  "heuristic",
-  "histrionic",
-  "hubristic",
-  "incendiary",
-  "insidious",
-  "insolent",
-  "intransigent",
-  "inveterate",
-  "invidious",
-  "irksome",
-  "jejune",
-  "jocular",
-  "judicious",
-  "lachrymose",
-  "limpid",
-  "loquacious",
-  "luminous",
-  "mannered",
-  "mendacious",
-  "meretricious",
-  "minatory",
-  "mordant",
-  "munificent",
-  "nefarious",
-  "noxious",
-  "obtuse",
-  "parsimonious",
-  "pendulous",
-  "pernicious",
-  "pervasive",
-  "petulant",
-  "platitudinous",
-  "precipitate",
-  "propitious",
-  "puckish",
-  "querulous",
-  "quiescent",
-  "rebarbative",
-  "recalcitant",
-  "redolent",
-  "rhadamanthine",
-  "risible",
-  "ruminative",
-  "sagacious",
-  "salubrious",
-  "sartorial",
-  "sclerotic",
-  "serpentine",
-  "strident",
-  "taciturn",
-  "tenacious",
-  "tremulous",
-  "trenchant",
-  "turbulent",
-  "turgid",
-  "ubiquitous",
-  "uxorious",
-  "verdant",
-  "voluble",
-  "voracious",
-  "wheedling",
-  "withering",
-  "zealous",
-];
-var nouns = [
-  "ninja",
-  "chair",
-  "pancake",
-  "statue",
-  "unicorn",
-  "rainbows",
-  "laser",
-  "senor",
-  "bunny",
-  "captain",
-  "nibblets",
-  "cupcake",
-  "carrot",
-  "gnomes",
-  "glitter",
-  "potato",
-  "salad",
-  "toejam",
-  "curtains",
-  "beets",
-  "toilet",
-  "exorcism",
-  "stick figures",
-  "mermaid eggs",
-  "sea barnacles",
-  "dragons",
-  "jellybeans",
-  "snakes",
-  "dolls",
-  "bushes",
-  "cookies",
-  "apples",
-  "ice cream",
-  "ukulele",
-  "kazoo",
-  "banjo",
-  "opera singer",
-  "circus",
-  "trampoline",
-  "carousel",
-  "carnival",
-  "locomotive",
-  "hot air balloon",
-  "praying mantis",
-  "animator",
-  "artisan",
-  "artist",
-  "colorist",
-  "inker",
-  "coppersmith",
-  "director",
-  "designer",
-  "flatter",
-  "stylist",
-  "leadman",
-  "limner",
-  "make-up artist",
-  "model",
-  "musician",
-  "penciller",
-  "producer",
-  "scenographer",
-  "set decorator",
-  "silversmith",
-  "teacher",
-  "auto mechanic",
-  "beader",
-  "bobbin boy",
-  "clerk of the chapel",
-  "filling station attendant",
-  "foreman",
-  "maintenance engineering",
-  "mechanic",
-  "miller",
-  "moldmaker",
-  "panel beater",
-  "patternmaker",
-  "plant operator",
-  "plumber",
-  "sawfiler",
-  "shop foreman",
-  "soaper",
-  "stationary engineer",
-  "wheelwright",
-  "woodworkers",
-];
+const COLOR_PRIMARY = 0x2e1f18;
+const COLOR_LIGHT = 0x000000;
+const COLOR_DARK = 0xffffff;
 
 class Scene3 extends Phaser.Scene {
   constructor() {
-    super("popup");
+    super("charla_01");
+  }
+
+  preload() {
+    this.load.scenePlugin({
+      key: "rexuiplugin",
+      url:
+        "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js",
+      sceneKey: "rexUI",
+    });
+
+    this.load.image(
+      "nextPage",
+      "https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/assets/images/arrow-down-left.png"
+    );
   }
 
   create() {
-    this.add.image(551, 310, "consultorio").setScale(1.05).setTint(0x828282);
-    this.add.image(150, 400, "doctor").setScale(2);
+    var negro = this.add
+      .image(551, 310, "negro")
+      .setAlpha(0.3)
+      .setInteractive();
 
-    var volver = this.add
-      .image(900, 350, "play")
-      .setScale(0.3)
-      .setInteractive({ cursor: "pointer" })
-      .setFlip(true)
-      .setTint(0x000000);
+    var clave = {
+      cabeza: "cabeza",
+    };
 
-    volver.setInteractive();
-    volver.on("pointerdown", () => {
-      this.scene.start("juego");
+    var boton = this.add
+      .image(800, 200, "hitbox")
+      .setAlpha(2)
+      .setInteractive({ cursor: "pointer" });
+
+    boton.on("pointerdown", () => {
+      console.log("trolleado puto");
+      this.scene.restart("charla_01");
     });
 
-    var group = this.add.group();
+    var content = [
+      "Doctor: Hola, buenas tardes. \n",
+      "Paciente: Me duele un poco la " + clave.cabeza + ".\n",
+      "Doctor: ¿Te compraste un kinder?",
+    ];
 
-    group.classType = Phaser.GameObjects.Text;
+    createTextBox(this, 200, 10, {
+      wrapWidth: 700,
+    }).start(content, 40);
 
-    //  Create some random Text strings
-
-    for (var i = 0; i < 32; i++) {
-      var x = Phaser.Math.Between(-100, 700);
-      var y = Phaser.Math.Between(0, 550);
-      var str =
-        Phaser.Math.RND.pick(adjectives) + " " + Phaser.Math.RND.pick(nouns);
-      var font = { font: "24px Arial" };
-      var text = group.create(x, y, str, font);
-
-      text.setInteractive(
-        new Phaser.Geom.Rectangle(0, 0, text.width, text.height),
-        Phaser.Geom.Rectangle.Contains
-      );
-    }
-
-    //  Input Event listeners
-
-    this.input.on("gameobjectover", function (pointer, gameObject) {
-      gameObject.setTint(0xff0000, 0xff0000, 0xffff00, 0xff00ff);
-    });
-
-    this.input.on("gameobjectout", function (pointer, gameObject) {
-      gameObject.clearTint();
+    negro.on("pointerdown", () => {
+      this.scene.sleep(), this.scene.resume("juego");
     });
   }
 }
+const GetValue = Phaser.Utils.Objects.GetValue;
+var createTextBox = function (scene, x, y, config) {
+  var wrapWidth = GetValue(config, "wrapWidth", 0);
+  var fixedWidth = GetValue(config, "fixedWidth", 0);
+  var fixedHeight = GetValue(config, "fixedHeight", 0);
+  var textBox = scene.rexUI.add
+    .textBox({
+      x: x,
+      y: y,
+
+      background: scene.rexUI.add
+        .roundRectangle(0, 0, 2, 2, 1, COLOR_PRIMARY)
+        .setStrokeStyle(4, COLOR_LIGHT),
+
+      icon: scene.rexUI.add.roundRectangle(0, 0, 80, 90, 0, COLOR_DARK),
+
+      text: getBBcodeText(scene, wrapWidth, fixedWidth, fixedHeight),
+
+      action: scene.add
+        .image(0, 0, "nextPage")
+        .setTint(0xffffff)
+        .setVisible(false),
+
+      space: {
+        left: 20,
+        right: 20,
+        top: 20,
+        bottom: 20,
+        icon: 10,
+        text: 10,
+      },
+    })
+    .setOrigin(0)
+    .layout();
+
+  textBox
+    .setInteractive({ cursor: "pointer" })
+    .on(
+      "pointerdown",
+      function () {
+        var icon = this.getElement("action").setVisible(false);
+        this.resetChildVisibleState(icon);
+        if (this.isTyping) {
+          this.stop(true);
+        } else {
+          this.typeNextPage();
+        }
+      },
+      textBox
+    )
+    .on(
+      "pageend",
+      function () {
+        if (this.isLastPage) {
+          return;
+        }
+      },
+      textBox
+    );
+  return textBox;
+};
+
+var getBBcodeText = function (scene, wrapWidth, fixedWidth, fixedHeight) {
+  return scene.rexUI.add.BBCodeText(0, 0, "", {
+    fixedWidth: fixedWidth,
+    fixedHeight: fixedHeight,
+
+    fontSize: "20px",
+    wrap: {
+      mode: "word",
+      width: wrapWidth,
+    },
+    maxLines: 2,
+  });
+};
