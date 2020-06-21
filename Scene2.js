@@ -1,3 +1,4 @@
+var pausa = 0;
 class Scene2 extends Phaser.Scene {
   constructor() {
     super("juego");
@@ -17,10 +18,10 @@ class Scene2 extends Phaser.Scene {
       .setInteractive({ cursor: "pointer", pixelPerfect: "true" });
 
     libreta.on("pointerdown", () => {
-      this.scene.pause();
+      pac_01.destroy();
       this.scene.run("Menu2");
     });
-
+    
     var pac_01 = this.add
       .image(550, 300, "paciente_01")
       .setScale(0.25)

@@ -37,7 +37,6 @@ class Scene3 extends Phaser.Scene {
       .setInteractive({ cursor: "pointer" });
 
     boton.on("pointerdown", () => {
-      console.log("trolleado puto");
       this.scene.restart("charla_01");
     });
 
@@ -47,17 +46,19 @@ class Scene3 extends Phaser.Scene {
       "Doctor: ¿Te compraste un kinder?",
     ];
 
-    createTextBox(this, 200, 10, {
-      wrapWidth: 700,
-    }).start(content, 40);
+      createTextBox(this, 200, 10, {
+        wrapWidth: 700,
+      }).start(content, 40);
 
     negro.on("pointerdown", () => {
       this.scene.sleep(), this.scene.resume("juego");
     });
   }
 }
+
 const GetValue = Phaser.Utils.Objects.GetValue;
 var createTextBox = function (scene, x, y, config) {
+  var termino = 1;
   var wrapWidth = GetValue(config, "wrapWidth", 0);
   var fixedWidth = GetValue(config, "fixedWidth", 0);
   var fixedHeight = GetValue(config, "fixedHeight", 0);

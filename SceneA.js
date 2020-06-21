@@ -13,7 +13,7 @@ class SceneA extends Phaser.Scene {
 
     vmenu.on("pointerdown", () => {
       this.scene.start("Menu");
-      this.scene.sleep("juego")
+      this.scene.sleep("juego");
     });
 
     var volverg = this.add
@@ -22,7 +22,8 @@ class SceneA extends Phaser.Scene {
       .setInteractive({ cursor: "pointer" });
 
     volverg.on("pointerdown", () => {
-      this.scene.sleep();
+      this.scene.sleep(), this.scene.resume("juego");
+      pausa= pausa += 1;
     });
 
     var ayuda = this.add

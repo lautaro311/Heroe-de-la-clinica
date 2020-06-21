@@ -37,6 +37,8 @@ const pac = [
 ];
 
 var game = new Phaser.Game(config);
+
+var pausa;
 /*
 const pac = [
   (pac_1 = [
