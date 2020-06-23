@@ -37,6 +37,7 @@ class Scene3 extends Phaser.Scene {
       .setInteractive({ cursor: "pointer" });
 
     boton.on("pointerdown", () => {
+      //this.scene.restart("Menu3");
       this.scene.restart("charla_01");
     });
 
@@ -46,9 +47,9 @@ class Scene3 extends Phaser.Scene {
       "Doctor: ¿Te compraste un kinder?",
     ];
 
-      createTextBox(this, 200, 10, {
-        wrapWidth: 700,
-      }).start(content, 40);
+    createTextBox(this, 200, 10, {
+      wrapWidth: 700,
+    }).start(content, 40);
 
     negro.on("pointerdown", () => {
       this.scene.sleep(), this.scene.resume("juego");
@@ -111,6 +112,10 @@ var createTextBox = function (scene, x, y, config) {
       "pageend",
       function () {
         if (this.isLastPage) {
+          if (chat == 0) {
+            chat = 1;
+            console.log(chat);
+          }
           return;
         }
       },

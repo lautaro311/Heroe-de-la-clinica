@@ -4,7 +4,7 @@ class SceneA extends Phaser.Scene {
   }
   create() {
     this.add.image(551, 310, "negro").setAlpha(0.4);
-    this.add.image(530, 300, "libretaA").setScale(2);
+    this.add.image(530, 300, "libreta").setScale(2);
 
     var vmenu = this.add
       .image(452, 420, "menug3")
@@ -12,8 +12,8 @@ class SceneA extends Phaser.Scene {
       .setInteractive({ cursor: "pointer" });
 
     vmenu.on("pointerdown", () => {
+      this.scene.restart("juego");
       this.scene.start("Menu");
-      this.scene.sleep("juego");
     });
 
     var volverg = this.add

@@ -14,53 +14,34 @@ var config = {
     },
   },
   //la importante es la primera, que es la que arranca
-  scene: [Scene1, Scene2, Scene0, Scene3,SceneA],
+  scene: [Scene1, Scene2, Scene0, Scene3, SceneA, SceneB],
 };
-
-const pac = [
-  pac1=[
-    fiebre= "41°",
-    cabeza= "true",
-    congestion= "true",
-    inflamacion= "false",
-    ganglios= "false",
-    erupcion= "true",
-    articulaciones= "true",
-    faringitis= "false",
-  ] ,
-  pac2={
-
-  } ,
-  pac3={
-
-  } ,
-];
 
 var game = new Phaser.Game(config);
 
-var pausa;
-/*
-const pac = [
-  (pac_1 = [
-    (fiebre = "41°"),
-    (cabeza = "true"),
-    (congestion = "true"),
-    (inflamacion = "false"),
-    (ganglios = "false"),
-    (erupcion = "true"),
-    (articulaciones = "true"),
-    (faringitis = "false"),
-  ]),
-  (pac_2 = [
-    (fiebre = "30°"),
-    (cabeza = "true"),
-    (congestion = "true"),
-    (inflamacion = "false"),
-    (ganglios = "false"),
-    (erupcion = "true"),
-    (articulaciones = "true"),
-    (faringitis = "false"),
-  ]),
-];
-*/
+const pac = {
+  pac1: {
+    fiebre: "41°",
+    cabeza: "true",
+    congestion: "true",
+    inflamacion: "false",
+    ganglios: "false",
+    erupcion: "true",
+    articulaciones: "true",
+    faringitis: "false",
+  },
+  pac2: {
+    fiebre: "41°",
+    cabeza: "true",
+    congestion: "true",
+    inflamacion: "false",
+    ganglios: "false",
+    erupcion: "true",
+    articulaciones: "true",
+    faringitis: "false",
+  },
+  pac3: {},
+};
 
+var pausa;
+var chat=0;

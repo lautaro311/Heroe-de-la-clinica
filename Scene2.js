@@ -12,16 +12,27 @@ class Scene2 extends Phaser.Scene {
 
     var chat = 0;
 
+    var ficha_c = this.add
+      .image(260, 550, "ficha_c")
+      .setScale(0.2, 0.13)
+      .setInteractive({ cursor: "pointer", pixelPerfect: "true" });
+
+    ficha_c.on("pointerdown", () => {
+      this.scene.pause();
+      this.scene.run("Menu3");
+    });
+
     var libreta = this.add
       .image(100, 550, "libreta")
-      .setScale(0.4)
+      .setScale(0.5, 0.3)
       .setInteractive({ cursor: "pointer", pixelPerfect: "true" });
 
     libreta.on("pointerdown", () => {
-      pac_01.destroy();
+      this.scene.pause();
+      //pac_01.destroy();
       this.scene.run("Menu2");
     });
-    
+
     var pac_01 = this.add
       .image(550, 300, "paciente_01")
       .setScale(0.25)
@@ -31,8 +42,6 @@ class Scene2 extends Phaser.Scene {
     pac_01.on("pointerdown", () => {
       this.scene.pause();
       this.scene.run("charla_01");
-      chat = chat += 1;
-      console.log("chat= " + chat);
     });
 
     this.arrow = this.add
