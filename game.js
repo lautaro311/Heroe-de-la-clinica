@@ -1,41 +1,81 @@
 var config = {
-    type: Phaser.AUTO,
-    scale:{
-        autoCenter: Phaser.Scale.CENTER_BOTH,
-        width: 1102,
-        height: 620,
-    },
+  type: Phaser.AUTO,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: 1102,
+    height: 620,
+  },
 
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 300 },
-            debug: false
-        }
+  physics: {
+    default: "arcade",
+    arcade: {
+      gravity: { y: 300 },
+      debug: false,
     },
-    //la importante es la primera, que es la que arranca
-    scene: [Scene1,Scene2]
+  },
+  scene: [
+    Scene1,
+    Scene2,
+    Scene0,
+    Scene3,
+    Scene4,
+    SceneA,
+    SceneB,
+    SceneC,
+    SceneD,
+    SceneE,
+    SceneF,
+    SceneG,
+    Scene6_1,
+    Scene6_2,
+    Scene6_3,
+    Scene5_E,
+    Scene5_F,
+  ],
 };
 
 var game = new Phaser.Game(config);
 
-var play;
+const pac = {
+  pac1: {
+    fiebre: "41°",
+    cabeza: "true",
+    congestion: "true",
+    inflamacion: "false",
+    ganglios: "false",
+    erupcion: "true",
+    articulaciones: "true",
+    faringitis: "true",
+  },
+  /*pac2: {
+    fiebre: "41°",
+    cabeza: "true",
+    congestion: "true",
+    inflamacion: "false",
+    ganglios: "false",
+    erupcion: "true",
+    articulaciones: "true",
+    faringitis: "false",
+  },
+  pac3: {},*/
+};
 
-var score;
-var gameOver;
+var pausa = 0;
+var help = 0;
+var chat = 0;
 
-var player;
-var stars;
-var bombs;
-var platforms;
-var cursors;
-var scoreText;
-var dudeStateText;
+var score = 240;
 
-var timedEvent;
-var initialTime;
-var timeText;
+var blanco = 0;
 
-var patron;
+var temp = 0;
+var cab = 0;
+var con = 0;
+var inf = 0;
+var gang = 0;
+var sar = 0;
+var dol = 0;
+var far = 0;
 
-var hongo;
+var finish = 0;
