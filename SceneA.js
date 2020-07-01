@@ -4,35 +4,64 @@ class SceneA extends Phaser.Scene {
   }
   create() {
     this.add.image(551, 310, "negro").setAlpha(0.4);
-    this.add.image(530, 300, "libreta").setScale(2);
-
-    var vmenu = this.add
-      .image(452, 420, "menug3")
-      .setOrigin(0, 0)
-      .setInteractive({ cursor: "pointer" });
-
-    vmenu.on("pointerdown", () => {
-      this.scene.restart("juego");
-      this.scene.start("Menu");
-    });
+    this.add.image(530, 300, "libreta");
 
     var volverg = this.add
-      .image(452, 110, "menug1")
+      .image(410, 180, "menug1")
       .setOrigin(0, 0)
+      .setScale(1.95, 1)
+      .setAlpha(0.01)
       .setInteractive({ cursor: "pointer" });
 
     volverg.on("pointerdown", () => {
-      this.scene.sleep(), this.scene.resume("juego");
-      pausa= pausa += 1;
+      this.scene.sleep();
+      if (pausa == 2) {
+        this.scene.resume("juego");
+        this.scene.resume("clock");
+        pausa = 0;
+      } else if (pausa == 4) {
+        this.scene.resume("juego2");
+        this.scene.resume("clock");
+        pausa = 0;
+      }
     });
 
     var ayuda = this.add
-      .image(452, 260, "menug2")
+      .image(452, 275, "menug2")
       .setOrigin(0, 0)
+      .setScale(1.2, 1)
+      .setAlpha(0.01)
       .setInteractive({ cursor: "pointer" });
 
     ayuda.on("pointerdown", () => {
-      this.scene.start("ayuda");
+      help = 5;
+      this.scene.pause();
+      this.scene.run("ayuda_1");
+    });
+
+    var vmenu = this.add
+      .image(460, 370, "menug3")
+      .setOrigin(0, 0)
+      .setScale(1.1, 1)
+      .setAlpha(0.01)
+      .setInteractive({ cursor: "pointer" });
+
+    vmenu.on("pointerdown", () => {
+      if (pausa == 2) {
+        this.scene.restart("juego");
+        this.scene.restart("juego2");
+        this.scene.sleep("juego");
+        this.scene.sleep("clock");
+        pausa = 0;
+        this.scene.start("Menu");
+      } else if (pausa == 4) {
+        this.scene.restart("juego");
+        this.scene.restart("juego2");
+        this.scene.sleep("juego2");
+        this.scene.sleep("clock");
+        pausa = 0;
+        this.scene.start("Menu");
+      }
     });
   }
 }

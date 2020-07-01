@@ -22,14 +22,13 @@ class Scene3 extends Phaser.Scene {
   }
 
   create() {
+    if ((chat = 1)) {
+      content = content - "Doctor: Hola, buenas tardes. \n";
+    }
     var negro = this.add
       .image(551, 310, "negro")
       .setAlpha(0.3)
       .setInteractive();
-
-    var clave = {
-      cabeza: "cabeza",
-    };
 
     var boton = this.add
       .image(800, 200, "hitbox")
@@ -37,19 +36,25 @@ class Scene3 extends Phaser.Scene {
       .setInteractive({ cursor: "pointer" });
 
     boton.on("pointerdown", () => {
-      //this.scene.restart("Menu3");
+      blanco = 0;
       this.scene.restart("charla_01");
     });
 
     var content = [
-      "Doctor: Hola, buenas tardes. \n",
-      "Paciente: Me duele un poco la " + clave.cabeza + ".\n",
-      "Doctor: ¿Te compraste un kinder?",
+      "Doctor: Buenos dias, mucho gusto.\n",
+      "Paciente: Buenas, igualmente.\n",
+      "Doctor: Digame, que le anda pasando?.\n",
+      "Paciente: Ando con unos dolores en las articulaciones y un dolor de cabeza insoportable hace unos dias.",
+      "Paciente: Ademas desde que empezaron me siento congestionado.\n",
+      "Doctor: Hmm, algo mas?.\n",
+      "Paciente: Creo que eso es todo.",
+      "Paciente: Ah no, tambien tengo un pequeño sarpullido en el cuerpo.",
+      "Doctor: Bien, pase a la camilla.",
     ];
 
     createTextBox(this, 200, 10, {
       wrapWidth: 700,
-    }).start(content, 40);
+    }).start(content, 25);
 
     negro.on("pointerdown", () => {
       this.scene.sleep(), this.scene.resume("juego");
@@ -101,8 +106,18 @@ var createTextBox = function (scene, x, y, config) {
         var icon = this.getElement("action").setVisible(false);
         this.resetChildVisibleState(icon);
         if (this.isTyping) {
-          this.stop(true);
+          //this.stop(true);
         } else {
+          blanco = blanco += 1;
+          console.log(blanco);
+          if (blanco == 4) {
+            cab = 1;
+            dol = 1;
+          } else if (blanco == 5) {
+            con = 1;
+          } else if (blanco == 8) {
+            sar = 1;
+          }
           this.typeNextPage();
         }
       },
@@ -112,10 +127,7 @@ var createTextBox = function (scene, x, y, config) {
       "pageend",
       function () {
         if (this.isLastPage) {
-          if (chat == 0) {
-            chat = 1;
-            console.log(chat);
-          }
+          chat = 1;
           return;
         }
       },
